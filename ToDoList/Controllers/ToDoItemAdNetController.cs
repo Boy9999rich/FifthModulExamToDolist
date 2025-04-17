@@ -29,5 +29,42 @@ namespace ToDoList.Controllers
              await service.DeleteToDoItemByIDAsync(Id);
         }
 
+        [HttpGet("GetToDoItemById")]
+        public async Task<ToDoItemGetDto> GetToDoItemById(long Id)
+        {
+            return await service.GetToDoItemByIdAsync(Id);
+        }
+
+        [HttpPost("UpdateToDoItem")]
+        public async Task UpdateToDoItem(ToDoItemUpdateDto toDoItemUpdateDto)
+        {
+             await service.UpdateToDoitemAsync(toDoItemUpdateDto);
+        }
+
+        [HttpGet("GetCompletedToDoItem")]
+        public async Task<List<ToDoItemGetDto>> GetCompletedToDoItem(int skip = 0, int take = 0)
+        {
+            return await service.GetCompletedAsync(skip, take);
+        }
+
+        [HttpGet("GetInCompletedToDoItem")]
+        public async Task<List<ToDoItemGetDto>> GetInCompletedToDoItem(int skip = 0, int take = 0)
+        {
+            return await service.GetInCompletedAsync(skip, take);
+        }
+
+        [HttpGet("GetDueDate")]
+
+        public async Task<List<ToDoItemGetDto>> GetDueDate(DateTime dateTime)
+        {
+            return await service.GetByDueDateAsync(dateTime);
+        }
+
+        [HttpGet("GetAllToDoItems")]
+
+        public async Task<List<ToDoItemGetDto>> GetAllToDoItems(int skip, int take)
+        {
+            return await service.GetAlltoDoItemsAsync(skip, take);
+        }
     }
 }

@@ -29,6 +29,21 @@ public class ToDoItemRepositoryAdoNet : IToDoItemRepositoryAdoNet
         }
     }
 
+    public int GetToDoListCount()
+    {
+        var counts = 0;
+        using (var conn = new SqlConnection(ConnectionString))
+        {
+            conn.Open();
+            using(var cmd = new SqlCommand("SELECT dbo.CountOfToDoLists()", conn))
+            {
+                cmd.CommandType = CommandType.Text;
+                counts = (int)cmd.ExecuteScalar();
+            }
+        }
+        return counts;
+    }
+
     public async Task<long> InsertToDoItemAsync(ToDoItem toDoItem)
     {
         using (var conn = new SqlConnection(ConnectionString))

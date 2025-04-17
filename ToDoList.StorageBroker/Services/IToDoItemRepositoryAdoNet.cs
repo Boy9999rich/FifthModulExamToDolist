@@ -12,5 +12,6 @@ namespace ToDoList.StorageBroker.Services
         Task<List<ToDoItem>> SelectByDueDateAsync(DateTime DateTime);
         Task<List<ToDoItem>> SelectCompletedAsync(int skip = 0, int take = 10);
         Task<List<ToDoItem>> SelectInCompletedAsync(int skip = 0, int take = 10);
+        int GetToDoListCount();
     }
 }
